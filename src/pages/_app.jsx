@@ -1,8 +1,8 @@
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-// import { Navbar } from "@/components/layouts/Navbar";
-// import { Footer } from "@/components/layouts/Footer";
+import { Navbar } from "@/components/layouts/Navbar";
+import { Footer } from "@/components/layouts/Footer";
 import { useRouter } from "next/router";
 import { AuthProvider } from "@/features/auth/AuthContext";
 
@@ -25,11 +25,11 @@ export default function App({ Component, pageProps }) {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <div className="flex flex-col min-h-screen">
-          {/* {!noNavbarFooter.includes(router.pathname) && <Navbar />} */}
+          {!noNavbarFooter.includes(router.pathname) && <Navbar />}
           <main className={`flex-grow ${inter.className}`}>
             <Component {...pageProps} />
           </main>
-          {/* {!noNavbarFooter.includes(router.pathname) && <Footer />} */}
+          {!noNavbarFooter.includes(router.pathname) && <Footer />}
         </div>
       </AuthProvider>
     </QueryClientProvider>
