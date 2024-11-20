@@ -21,11 +21,9 @@ export function Login() {
   const [loginfailed, setLoginFailed] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (isLoggedIn && router.pathname !== "/") {
-      router.push("/");
-    }
-  }, [isLoggedIn, router]);
+  if (isLoggedIn && router.pathname !== "/") {
+    router.push("/");
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
