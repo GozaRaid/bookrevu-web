@@ -35,8 +35,8 @@ export function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await deleteAuthMutation.mutateAsync();
       logout();
+      await deleteAuthMutation.mutateAsync();
     } catch (error) {}
   };
 
@@ -102,7 +102,11 @@ export function Navbar() {
             placeholder="Search for books"
             className="w-full rounded-lg bg-background pl-9 md:w-[336px]"
           />
-          <button type="submit" disabled={query.trim() === ""} className="absolute w-4 h-4 left-3 top-3">
+          <button
+            type="submit"
+            disabled={query.trim() === ""}
+            className="absolute w-4 h-4 left-3 top-3"
+          >
             <Image
               src="/magnifying-glass-solid.svg"
               width={16}
