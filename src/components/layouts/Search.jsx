@@ -5,19 +5,19 @@ import { useEffect, useState } from "react";
 export default function Searchpage() {
   const router = useRouter();
   const { search: query } = router.query;
-  const [books, setBooks] = useState([]);
+  const [booksFound, setBooksFound] = useState(false);
+  const [booksSearch, setBooksSearch] = useState([]);
 
   const { data, isLoading, error } = useFetchSearchBooks(query);
 
   useEffect(() => {
     if (data) {
-      setBooks(data.data.books);
+      setBooksSearch(data.data.books);
+      setBooksFound(data.data.books.length > 0);
     }
   }, [data]);
 
   if (isLoading) return <p>Loading...</p>;
-
-  const booksFound = books.length > 0;
 
   const handlerClickBook = (book) => {
     const letter = book.title.charAt(0).toLowerCase();
@@ -42,7 +42,7 @@ export default function Searchpage() {
       </div>
       {booksFound ? (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {books.map((book) => (
+          {booksSearch.map((book) => (
             <div
               key={book.id}
               onClick={() => handlerClickBook(book)}

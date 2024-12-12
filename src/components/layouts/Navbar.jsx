@@ -197,7 +197,7 @@ export function Navbar() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild className="mx-3">
               <Button variant="ghost" size="icon" className="rounded-full">
-                <Avatar className="w-8 h-8 border-2">
+                <Avatar className="w-10 h-10 border-2">
                   <AvatarImage src="/placeholder-user.jpg" />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
@@ -206,7 +206,7 @@ export function Navbar() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <div className="flex items-center gap-2 p-2">
-                <Avatar className="w-8 h-8">
+                <Avatar className="w-10 h-10">
                   <AvatarImage src="/placeholder-user.jpg" />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
