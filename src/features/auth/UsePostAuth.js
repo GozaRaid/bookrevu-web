@@ -1,5 +1,4 @@
 import { axiosInstance } from "@/lib/axios";
-import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "@/features/auth/AuthContext";
 
@@ -9,13 +8,10 @@ export const usePostAuth = () => {
   return useMutation({
     mutationFn: async ({ username, password }) => {
       try {
-        const response = await axios.post(
-          `http://46.137.238.101/authentications`,
-          {
-            username,
-            password,
-          }
-        );
+        const response = await axiosInstance.post("/authentications", {
+          username,
+          password,
+        });
 
         return response.data;
       } catch (error) {
