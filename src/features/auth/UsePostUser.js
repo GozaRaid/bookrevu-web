@@ -8,11 +8,14 @@ export const usePostUser = () => {
   return useMutation({
     mutationFn: async ({ username, email, password }) => {
       try {
-        const response = await axiosInstance.post("/users", {
-          username,
-          email,
-          password,
-        });
+        const response = await axiosInstance.post(
+          `http://46.137.238.101/authentications`,
+          {
+            username,
+            email,
+            password,
+          }
+        );
         return response.data;
       } catch (error) {
         console.error(
