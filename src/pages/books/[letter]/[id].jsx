@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Detailbook } from "@/components/layouts/Detailbook";
+import { Detailbook } from "../../../components/layouts/Detailbook";
 import { useFetchBookById } from "@/features/book/useFetchBookById";
 import { useFetchBookReviewById } from "@/features/book/review/useFetchBookReviewById";
 
