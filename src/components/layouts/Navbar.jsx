@@ -31,6 +31,10 @@ export function Navbar() {
   const { isLoggedIn, userData, logout } = useAuth();
   const router = useRouter();
 
+  if (!userData && isLoggedIn) {
+    return <div>Loading...</div>;
+  }
+
   const deleteAuthMutation = useDeleteAuth();
 
   const handleLogout = async () => {
@@ -157,7 +161,7 @@ export function Navbar() {
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
-                        href="/#recomendation"
+                        href="/#recomendation-section"
                         className="group button-custom-mobile"
                         prefetch={false}
                       >
@@ -198,7 +202,9 @@ export function Navbar() {
             <DropdownMenuTrigger asChild className="mx-3">
               <Button variant="ghost" size="icon" className="rounded-full">
                 <Avatar className="w-10 h-10 border-2">
-                  <AvatarImage src="/placeholder-user.jpg" />
+                  <AvatarImage
+                    src={userData.profile_image_url || "/placeholder-user.jpg"}
+                  />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
                 <span className="sr-only">Toggle user menu</span>
@@ -207,7 +213,9 @@ export function Navbar() {
             <DropdownMenuContent align="end">
               <div className="flex items-center gap-2 p-2">
                 <Avatar className="w-10 h-10">
-                  <AvatarImage src="/placeholder-user.jpg" />
+                  <AvatarImage
+                    src={userData.profile_image_url || "/placeholder-user.jpg"}
+                  />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
                 <div className="grid gap-0.5 leading-none">
@@ -220,17 +228,7 @@ export function Navbar() {
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <Link
-                  href="#"
-                  className="flex items-center gap-2"
-                  prefetch={false}
-                >
-                  <div className="w-4 h-4" />
-                  <span>Profile</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link
-                  href="#"
+                  href="/settings"
                   className="flex items-center gap-2"
                   prefetch={false}
                 >

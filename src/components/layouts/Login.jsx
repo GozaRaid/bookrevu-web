@@ -41,6 +41,7 @@ export function Login() {
         onSuccess: (data) => {
           login(data.data.accessToken);
           router.push("/");
+          window.location.reload();
         },
       }
     );

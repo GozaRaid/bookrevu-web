@@ -5,4 +5,4 @@ function Tambahbuku() {
   return <Addbook />;
 }
 
-export default withAuth(Tambahbuku);
+export default withAuth(Tambahbuku, "admin");

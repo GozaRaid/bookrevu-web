@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/router";
+import { useFetchDataUser } from "../profile/useFetchDataUser";
 
 const AuthContext = createContext();
 
@@ -16,35 +17,47 @@ export const AuthProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
   const router = useRouter();
 
+  // Fetch user data
+  const { data: fetchedUserData, isSuccess, isLoading } = useFetchDataUser();
+
   const decodeToken = (token) => {
     try {
       return jwtDecode(token);
     } catch (error) {
-      console.log("Error decoding token:", error);
+      console.error("Error decoding token:", error);
       return null;
     }
   };
 
-  const checkAuthStatus = async (route) => {
+  // Check authentication status
+  const checkAuthStatus = useCallback(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
       const decodedToken = decodeToken(token);
       if (decodedToken) {
         setAccessToken(token);
         setIsLoggedIn(true);
-        setUserData(decodedToken);
       } else {
-        logout(route);
+        logout();
       }
     } else {
-      logout(route);
+      logout();
     }
-  };
-
-  useEffect(() => {
-    checkAuthStatus();
   }, []);
 
+  // Update user data when fetched and user is logged in
+  useEffect(() => {
+    if (isSuccess && fetchedUserData) {
+      setUserData(fetchedUserData);
+    }
+  }, [isSuccess, fetchedUserData]);
+
+  // Run checkAuthStatus on mount
+  useEffect(() => {
+    checkAuthStatus();
+  }, [checkAuthStatus]);
+
+  // Login function
   const login = (token) => {
     const decodedToken = decodeToken(token);
     if (decodedToken) {
@@ -55,18 +68,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = useCallback(
-    (route) => {
-      setAccessToken(null);
-      setIsLoggedIn(false);
-      setUserData(null);
-      localStorage.removeItem("accessToken");
-      if (route) {
-        router.push("/");
-      }
-    },
-    [router]
-  );
+  // Logout function
+  const logout = useCallback(() => {
+    setAccessToken(null);
+    setIsLoggedIn(false);
+    setUserData(null);
+    localStorage.removeItem("accessToken");
+    router.push("/");
+  }, [router]);
 
   return (
     <AuthContext.Provider
