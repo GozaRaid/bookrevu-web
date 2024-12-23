@@ -5,7 +5,7 @@ export const useFetchHomeBook = () => {
   return useQuery({
     queryKey: ["homebooks"],
     queryFn: async () => {
-      const booksResponse = await axiosInstance.get("/books/home");
+      const booksResponse = await axiosInstance.get("/api/books/home");
       return booksResponse.data.data;
     },
     refetchOnWindowFocus: false,

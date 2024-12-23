@@ -17,7 +17,7 @@ export const usePostBook = () => {
         const token = localStorage.getItem("accessToken");
 
         const response = await axiosInstance.post(
-          "/books",
+          "/api/books",
           {
             title,
             published,
@@ -40,7 +40,7 @@ export const usePostBook = () => {
           const formData = new FormData();
           formData.append("cover", image);
 
-          await axiosInstance.post(`/books/${bookId}/covers`, formData, {
+          await axiosInstance.post(`/api/books/${bookId}/covers`, formData, {
             headers: {
               Authorization: `Bearer ${token}`,
               "Content-Type": "multipart/form-data",

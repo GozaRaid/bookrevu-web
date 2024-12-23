@@ -8,12 +8,16 @@ export const useAddProfilePicute = () => {
         const token = localStorage.getItem("accessToken");
         const formData = new FormData();
         formData.append("cover", image);
-        const response = await axiosInstance.post("/users/profile", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axiosInstance.post(
+          "/api/users/profile",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         return response.data;
       } catch (error) {

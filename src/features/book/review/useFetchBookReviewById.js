@@ -2,7 +2,7 @@ import { axiosInstance } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchBookReviewsById = async (id) => {
-  const bookResponse = await axiosInstance.get(`/books/${id}/review`);
+  const bookResponse = await axiosInstance.get(`/api/books/${id}/review`);
   return bookResponse.data.reviews;
 };
 

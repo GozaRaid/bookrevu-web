@@ -6,7 +6,7 @@ export const useDeleteProfilePicture = () => {
     mutationFn: async () => {
       try {
         const token = localStorage.getItem("accessToken");
-        const response = await axiosInstance.delete("/users/profile", {
+        const response = await axiosInstance.delete("/api/users/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

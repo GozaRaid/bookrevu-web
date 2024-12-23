@@ -6,7 +6,7 @@ export const useFetchUser = () => {
   return useQuery({
     queryKey: ["userall"],
     queryFn: async () => {
-      const userResponse = await axiosInstance.get("/users/all", {
+      const userResponse = await axiosInstance.get("/api/users/all", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

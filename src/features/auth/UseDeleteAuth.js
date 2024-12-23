@@ -5,7 +5,7 @@ export const useDeleteAuth = () => {
   return useMutation({
     mutationFn: async () => {
       try {
-        const response = await axiosInstance.delete("/authentications");
+        const response = await axiosInstance.delete("/api/authentications");
         return response.data;
       } catch (error) {
         throw new Error(

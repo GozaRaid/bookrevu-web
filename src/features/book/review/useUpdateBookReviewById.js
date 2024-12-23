@@ -6,7 +6,7 @@ export const useUpdateBookReviewById = () => {
     mutationFn: async ({ bookId, review }) => {
       try {
         const response = await axiosInstance.put(
-          `/books/${bookId}/review`,
+          `/api/books/${bookId}/review`,
           { review },
           {
             headers: {

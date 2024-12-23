@@ -8,7 +8,7 @@ export const usePostUser = () => {
   return useMutation({
     mutationFn: async ({ username, email, password }) => {
       try {
-        const response = await axiosInstance.post("/users", {
+        const response = await axiosInstance.post("/api/users", {
           username,
           email,
           password,

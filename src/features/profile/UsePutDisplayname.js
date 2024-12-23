@@ -7,7 +7,7 @@ export const usePutDisplayname = () => {
       try {
         const token = localStorage.getItem("accessToken");
         const response = await axiosInstance.put(
-          "/users/profile",
+          "/api/users/profile",
           {
             displayname,
           },

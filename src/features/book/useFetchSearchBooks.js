@@ -5,7 +5,7 @@ export const useFetchSearchBooks = (query) => {
   return useQuery({
     queryKey: ["searchBooks", query],
     queryFn: async () => {
-      const booksResponse = await axiosInstance.get("/books/search", {
+      const booksResponse = await axiosInstance.get("/api/books/search", {
         params: {
           q: query,
         },

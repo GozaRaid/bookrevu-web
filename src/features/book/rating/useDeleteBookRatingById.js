@@ -5,11 +5,14 @@ export const useDeleteBookRatingById = () => {
   return useMutation({
     mutationFn: async ({ bookId }) => {
       try {
-        const response = await axiosInstance.delete(`/books/${bookId}/rating`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        });
+        const response = await axiosInstance.delete(
+          `/api/books/${bookId}/rating`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        );
         return response.data;
       } catch (error) {
         throw new Error(

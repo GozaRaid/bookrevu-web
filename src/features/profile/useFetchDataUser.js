@@ -5,7 +5,7 @@ export const useFetchDataUser = () => {
   return useQuery({
     queryKey: ["userdata"],
     queryFn: async () => {
-      const userResponse = await axiosInstance.get("/users", {
+      const userResponse = await axiosInstance.get("/api/users", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
