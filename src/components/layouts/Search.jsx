@@ -14,6 +14,8 @@ export default function Searchpage() {
     if (data) {
       setBooksSearch(data.data.books);
       setBooksFound(data.data.books.length > 0);
+    } else {
+      setBooksFound(false);
     }
   }, [data]);
 
