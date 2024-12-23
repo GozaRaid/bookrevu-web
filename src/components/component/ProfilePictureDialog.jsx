@@ -30,8 +30,6 @@ export default function ProfilePictureDialog({
     return <div>Loading...</div>;
   }
 
-  console.log(userData);
-
   const handleFileSelect = (event) => {
     const file = event.target.files?.[0];
     if (file) {

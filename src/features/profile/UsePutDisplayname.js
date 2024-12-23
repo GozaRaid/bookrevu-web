@@ -4,7 +4,6 @@ import { useMutation } from "@tanstack/react-query";
 export const usePutDisplayname = () => {
   return useMutation({
     mutationFn: async ({ displayname }) => {
-      console.log(displayname);
       try {
         const token = localStorage.getItem("accessToken");
         const response = await axiosInstance.put(
